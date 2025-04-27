@@ -44,7 +44,7 @@ Deployed serverlessly via AWS S3 for high availability and zero maintenance.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/dinner-wheel.git
+git clone https://github.com/pete-rapisarda/dinner-wheel.git
 ```
 
 ### 2. Run Locally

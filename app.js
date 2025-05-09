@@ -26,7 +26,8 @@ function updateRestaurantList() {
         const p = document.createElement('p');
         p.textContent = `${index + 1}.${restaurant}`;
         restaurantListDiv.appendChild(p);
-    })
+    });
+    drawWheel();
 }
 
 restaurantInput.addEventListener('keypress',function(event){
@@ -34,3 +35,42 @@ restaurantInput.addEventListener('keypress',function(event){
         addButton.click();
     }
 })
+
+function drawWheel() {
+    const canvas = document.getElementById("wheel-canvas");
+    const ctx = canvas.getContext("2d");
+    const centerX = canvas.width/2;
+    const centerY = canvas.height/2;
+    const radius = Math.min(centerX, centerY) - 10;
+    const sliceAngle = (2 * Math.PI) / restaurants.length;
+
+
+    // Clear the previous drawing
+    ctx.clearRect(0,0,canvas.width,canvas.length);
+
+    // Draw each slice
+    restaurants.forEach((restaurant, index) => {
+        const startAngle = index * sliceAngle;
+        const endAngle = startAngle + sliceAngle;
+        const color = `hsl(${index * (360 / restaurants.length)}, 70%, 60%)`;
+
+        // Draw the slice
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        // Add the text
+        const textAngle = startAngle + sliceAngle / 2;
+        const textX = centerX + Math.cos(textAngle) * (radius / 1.5);
+        const textY = centerY + Math.sin(textAngle) * (radius / 1.5);
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 14px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(restaurant, textX, textY);
+})}
+
+drawWheel();

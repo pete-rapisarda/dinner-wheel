@@ -1,7 +1,7 @@
 // Get references to the canvas and spin button
 const canvas = document.getElementById("wheel-canvas");
 const ctx = canvas.getContext("2d");
-const spinButton = document.getElementById("spin-button");
+const spinButton = document.getElementById("spin-wheel");
 
 function drawWheel() {
     const segmentCount = restaurants.length;

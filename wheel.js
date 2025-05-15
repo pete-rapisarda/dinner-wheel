@@ -1,4 +1,4 @@
-//Get references to the canvas and spin button
+// Get references to the canvas and spin button
 const canvas = document.getElementById("wheel-canvas");
 const ctx = canvas.getContext("2d");
 const spinButton = document.getElementById("spin-button");
@@ -34,3 +34,36 @@ function drawWheel() {
 }
 
 drawWheel();
+
+let rotation = 0;
+let spinTimeout = null;
+
+function spinWheel() {
+    const spinDuration = 3000;
+    const endRotation = Math.random() * 360 + 350 *5;
+    const start = Date.now();
+
+    function animate() {
+        const elapsed = Date.now() - start;
+        const progress = Math.min(elapsed / spinDuration, 1);
+        rotation = endRotation * progress;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate((rotation * Math.PI) / 180);
+        ctx.translate(-canvas.width / 2, -canvas.height / 2);
+        drawWheel();
+        ctx.restore();
+
+        if (progress < 1) {
+            spinTimeout = requestAnimationFrame(animate);
+        } else {
+            const winningIndex = Math.floor((segmentCount - (rotation / 360) % segmentCount) % segmentCount);
+            alert(`🎉The winneris: ${restaurants[winningIndex]}!`);
+        }
+    }
+    if (spinTimeout) cancelAnimationFrame(spinTimeout);
+    animate();
+}
+spinButton.addEventListener("click", spinWheel);

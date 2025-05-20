@@ -3,3 +3,25 @@ body {
     text-align: center;
     margin: 20px;
 }
+
+#spin-wheel {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#spin-wheel:hover {
+    background-color: #45a049;
+}
+
+#wheel-canvas {
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+    border: 20px solid #333;
+}

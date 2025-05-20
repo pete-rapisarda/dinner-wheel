@@ -62,11 +62,6 @@ function spinWheel() {
             spinTimeout = requestAnimationFrame(animate);
         } else {
             const winningIndex = Math.floor((segmentCount - (rotation / 360) % segmentCount) % segmentCount);
-            console.log("rotation:", rotation);
-            console.log("segmentCount:", segmentCount);
-            console.log("fractional index:", (rotation / 360) % segmentCount);
-            console.log("winningIndex:", winningIndex);
-            console.log("restaurants[winningIndex]:", restaurants[winningIndex]);
             alert(`🎉The winneris: ${restaurants[winningIndex]}!`);
         }
     }

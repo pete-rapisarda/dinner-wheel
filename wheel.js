@@ -3,8 +3,10 @@ const canvas = document.getElementById("wheel-canvas");
 const ctx = canvas.getContext("2d");
 const spinButton = document.getElementById("spin-wheel");
 
+let segmentCount = 0;
+
 function drawWheel() {
-    const segmentCount = restaurants.length;
+    segmentCount = restaurants.length;
     const angleStep = (2 * Math.PI) / segmentCount;
     const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#FF9800", "#9C27B0"];
 
@@ -60,6 +62,11 @@ function spinWheel() {
             spinTimeout = requestAnimationFrame(animate);
         } else {
             const winningIndex = Math.floor((segmentCount - (rotation / 360) % segmentCount) % segmentCount);
+            console.log("rotation:", rotation);
+            console.log("segmentCount:", segmentCount);
+            console.log("fractional index:", (rotation / 360) % segmentCount);
+            console.log("winningIndex:", winningIndex);
+            console.log("restaurants[winningIndex]:", restaurants[winningIndex]);
             alert(`🎉The winneris: ${restaurants[winningIndex]}!`);
         }
     }
